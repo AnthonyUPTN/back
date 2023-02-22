@@ -4,7 +4,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const { DB_HOST } = process.env;
+const { DB_HOST, PORT = 3000 } = process.env;
 
 const app = express();
 
@@ -25,19 +25,17 @@ app.use((err, _, res, __) => {
   res.status(status).json({ message });
 });
 
-// app.listen(3000, () => {
-//   console.log("server get started....");
-// });
-mongoose.set("strictQuery", true);
+// mongoose.set("strictQuery", true);
 
-mongoose
-  .connect(DB_HOST)
-  .then(() =>
-    app.listen(3000, () => {
-      console.log("Database connection successful");
-    })
-  )
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+// mongoose
+//   .connect(DB_HOST)
+//   .then(() =>
+//     app.listen(PORT, () => {
+//       console.log("Database connection successful");
+//     })
+//   )
+//   .catch((error) => {
+//     console.log(error.message);
+//     process.exit(1);
+//   });
+app.listen(3000, () => console.log("database connect"));
