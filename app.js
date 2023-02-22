@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.status(200).send(console.log("haaalo"));
+  res.status(200).send({ message: "haaaaalo" });
 });
 
 app.use((_, res) => {
@@ -25,17 +25,18 @@ app.use((err, _, res, __) => {
   res.status(status).json({ message });
 });
 
-// mongoose.set("strictQuery", true);
+mongoose.set("strictQuery", true);
 
-// mongoose
-//   .connect(DB_HOST)
-//   .then(() =>
-//     app.listen(PORT, () => {
-//       console.log("Database connection successful");
-//     })
-//   )
-//   .catch((error) => {
-//     console.log(error.message);
-//     process.exit(1);
-//   });
-app.listen(3000, () => console.log("database connect"));
+mongoose
+  .connect(DB_HOST)
+  .then(() =>
+    app.listen(PORT, () => {
+      console.log("Database connection successful");
+    })
+  )
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
+
+// app.listen(3000, () => console.log("database connect"));
