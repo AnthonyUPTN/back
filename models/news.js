@@ -1,5 +1,20 @@
-const { model } = require("mongoose");
-const newsSchema = require("./schemas/newsSchema");
+const { model, Schema } = require("mongoose");
+
+const newsSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  url: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
+  date: {
+    type: Date,
+  },
+});
 
 const News = model("news", newsSchema);
 
