@@ -1,18 +1,23 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 
-const friend = new Schema(
-  {
-    name: String,
-    logo: String,
-    worktime: Array,
-    adress: String,
-    email: String,
-    phone: String,
+const friendSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
   },
+  url: String,
+  addressUrl: String,
+  imageUrl: String,
+  address: String,
+  workDays: [
+    {
+      isOpen: Boolean,
+      from: String,
+      to: String,
+    },
+  ],
+  phone: String,
+  email: String,
+});
 
-  { versionKey: false }
-);
-
-const Friend = model("friend", friend);
-
-module.exports = Friend;
+module.exports = friendSchema;
